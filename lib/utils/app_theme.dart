@@ -9,6 +9,9 @@ class AppTheme {
   static const redLight = Color(0xFFFFF1F0);
   static const blueLight = Color(0xFFF5F9FF);
 
+  static const redTextColor = Color(0xFFD05045);
+  static const greenTextColor = Color(0xFF8CC153);
+
   static final lightTheme = ThemeData(
     primaryColor: mainColor,
     scaffoldBackgroundColor: Colors.white,

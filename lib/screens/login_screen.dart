@@ -1,12 +1,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:movie_booking_app/controllers/auth_controller.dart';
 import 'package:movie_booking_app/screens/signup_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
+import 'package:movie_booking_app/utils/input_validator.dart';
 import 'package:movie_booking_app/utils/social_buttons.dart';
+import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -69,6 +75,7 @@ class LoginScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: emailController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
@@ -89,6 +96,7 @@ class LoginScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: passwordController,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       obscureText: true,
@@ -112,7 +120,9 @@ class LoginScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          
+                        },
                         child: const Text(
                           'Forgot Password?',
                           style: TextStyle(
@@ -123,7 +133,18 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if(InputValidator.validateField('Username', emailController.text.trim()) 
+                        && InputValidator.validateField('Password', passwordController.text.trim())
+                        ){
+                          AuthController.instance.loginUser(
+                            emailController.text.trim(),
+                            passwordController.text.trim(),
+                          );
+
+                        }
+                        
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.mainColor,
                           shape: RoundedRectangleBorder(
@@ -172,7 +193,9 @@ class LoginScreen extends StatelessWidget {
                       height: 10,
                     ),
                     SocialLoginButtons(
-                      onGoogleClick: () {},
+                      onGoogleClick: () {
+                        AuthController.instance.googleLogIn();
+                      },
                       onFbClick: () {},
                     ),
                   ],
@@ -189,17 +212,11 @@ class LoginScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => SignupScreen(),
-                        ),
-                      );
+                      Get.to(SignupScreen());
                     },
                     child: const Text(
                       'SignUp',
                       textAlign: TextAlign.start,
-                    
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

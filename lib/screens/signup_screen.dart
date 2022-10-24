@@ -1,13 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:movie_booking_app/controllers/auth_controller.dart';
 import 'package:movie_booking_app/screens/login_screen.dart';
 import 'package:movie_booking_app/screens/signup_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
+import 'package:movie_booking_app/utils/input_validator.dart';
 import 'package:movie_booking_app/utils/social_buttons.dart';
 
 class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+  SignupScreen({super.key});
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +62,7 @@ class SignupScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: nameController,
                       keyboardType: TextInputType.name,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
@@ -75,6 +84,7 @@ class SignupScreen extends StatelessWidget {
                     ),
                    
                     TextField(
+                      controller: emailController,
                       keyboardType: TextInputType.emailAddress,
                       textInputAction: TextInputAction.next,
                       decoration: InputDecoration(
@@ -95,6 +105,7 @@ class SignupScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: passwordController,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.next,
                       obscureText: true,
@@ -116,6 +127,7 @@ class SignupScreen extends StatelessWidget {
                       height: 10,
                     ),
                     TextField(
+                      controller: confirmPasswordController,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.done,
                       obscureText: true,
@@ -138,7 +150,15 @@ class SignupScreen extends StatelessWidget {
                     ),
                   
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        if(InputValidator.validateField('Name', nameController.text.trim()) 
+                        && InputValidator.validateField('Email', emailController.text.trim())){
+                          if(InputValidator.validatePassword(passwordController.text, confirmPasswordController.text)){
+                            AuthController.instance.registerUser(emailController.text.trim(), passwordController.text.trim());
+                          }
+
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: AppTheme.mainColor,
                           shape: RoundedRectangleBorder(
@@ -204,12 +224,7 @@ class SignupScreen extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => LoginScreen(),
-                        ),
-                      );
+                      Get.back();
                     },
                     child: const Text(
                       'Login',

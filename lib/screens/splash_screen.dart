@@ -22,22 +22,22 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     _animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 5000));
+        vsync: this, duration: const Duration(milliseconds: 2000));
     _animation = CurvedAnimation(
         parent: _animationController,
         curve: Curves.bounceOut,
         reverseCurve: Curves.bounceIn);
     _animationController.forward();
 
-    Timer(
-      const Duration(seconds: 5),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        ),
-      ),
-    );
+    // Timer(
+    //   const Duration(seconds: 5),
+    //   () => Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (_) => const LoginScreen(),
+    //     ),
+    //   ),
+    // );
     super.initState();
   }
 
