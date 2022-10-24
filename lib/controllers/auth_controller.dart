@@ -13,6 +13,8 @@ class AuthController extends GetxController {
   static AuthController instance = Get.find();
   late Rx<User?> _user;
   bool isLogging = false;
+
+  User? get user => _user.value;
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final googleSignIn = GoogleSignIn();
 
