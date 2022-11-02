@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('Name'),
+                Text(AuthController.instance.user!.displayName ?? 'Name'),
                 DropdownButton<String>(
                   value: city,
                   dropdownColor: AppTheme.statusBarColor,
