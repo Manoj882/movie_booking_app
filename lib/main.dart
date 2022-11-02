@@ -12,6 +12,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(AuthController());
+  
   runApp(const MyApp());
 }
 
