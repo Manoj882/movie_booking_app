@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:movie_booking_app/controllers/auth_controller.dart';
+import 'package:movie_booking_app/controllers/location_controller.dart';
 import 'package:movie_booking_app/firebase_options.dart';
 import 'package:movie_booking_app/screens/splash_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
@@ -12,7 +13,7 @@ void main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
   Get.put(AuthController());
-  
+  Get.put(LocationController());
   runApp(const MyApp());
 }
 

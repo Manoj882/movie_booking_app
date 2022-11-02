@@ -11,12 +11,14 @@ import 'package:movie_booking_app/constants/constant.dart';
 import 'package:movie_booking_app/controllers/auth_controller.dart';
 import 'package:movie_booking_app/repository/datas/custom_data.dart';
 import 'package:movie_booking_app/screens/profile_screen.dart';
+import 'package:movie_booking_app/screens/select_location_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 import 'package:movie_booking_app/widgets/custom_slider.dart';
 import 'package:movie_booking_app/widgets/event_items.dart';
 import 'package:movie_booking_app/widgets/menu_item.dart';
 import 'package:movie_booking_app/widgets/movie_items.dart';
 
+import '../controllers/location_controller.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -83,24 +85,46 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(AuthController.instance.user!.displayName ?? 'Name'),
-                DropdownButton<String>(
-                  value: city,
-                  dropdownColor: AppTheme.statusBarColor,
-                  isDense: true,
-                  underline: SizedBox.shrink(),
-                  icon: Icon(
-                    Icons.keyboard_arrow_down_outlined,
-                    color: Colors.white.withOpacity(0.7),
-                  ),
-                  items: cities
-                      .map((e) =>
-                          DropdownMenuItem<String>(value: e, child: Text(e)))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() {
-                      city = value!;
-                    });
+                // DropdownButton<String>(
+                //   value: city,
+                //   dropdownColor: AppTheme.statusBarColor,
+                //   isDense: true,
+                //   underline: SizedBox.shrink(),
+                //   icon: Icon(
+                //     Icons.keyboard_arrow_down_outlined,
+                //     color: Colors.white.withOpacity(0.7),
+                //   ),
+                //   items: cities
+                //       .map((e) =>
+                //           DropdownMenuItem<String>(value: e, child: Text(e)))
+                //       .toList(),
+                //   onChanged: (value) {
+                //     setState(() {
+                //       city = value!;
+                //     });
+                //   },
+                // ),
+
+                GestureDetector(
+                  onTap: (){
+                    Get.to(SelectLocationScreen());
                   },
+                  child: Row(
+                    children: [
+                      Text(
+                        LocationController.instance.city.value,
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.7),
+                          fontSize: 14,
+                          inherit: true,
+                        ),
+                      ),
+                      Icon(
+                        Icons.keyboard_arrow_down_outlined,
+                        color: Colors.white.withOpacity(0.7),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -211,7 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 20,
                 ),
                 child: Row(
-                  
                   children: [
                     SvgPicture.asset(
                       'assets/images/menus/spotlights.svg',
@@ -219,7 +242,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 18,
                       width: 18,
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Events'.toUpperCase(),
                       style: TextStyle(
@@ -247,7 +272,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   right: 20,
                 ),
                 child: Row(
-                  
                   children: [
                     SvgPicture.asset(
                       'assets/images/menus/theater_masks.svg',
@@ -255,7 +279,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 18,
                       width: 18,
                     ),
-                    const SizedBox(width: 10,),
+                    const SizedBox(
+                      width: 10,
+                    ),
                     Text(
                       'Plays'.toUpperCase(),
                       style: TextStyle(
