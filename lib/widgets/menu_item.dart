@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:movie_booking_app/repository/datas/custom_data.dart';
+import 'package:movie_booking_app/screens/view_all_screen.dart';
 
 class CategoryItems extends StatelessWidget {
   const CategoryItems({super.key});
@@ -20,6 +22,8 @@ class CategoryItems extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 print(menus[index].name);
+                //sending argument to next page
+                Get.to(() => ViewAllScreen(), arguments: menus[index]);
               },
               child: Column(
                 children: [

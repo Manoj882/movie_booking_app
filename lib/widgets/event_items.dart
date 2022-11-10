@@ -17,8 +17,11 @@ class EventItems extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: events.length,
-        itemBuilder: (_, index){
-          return ItemBlock(model: events[index], onTap: (model){});
+        itemBuilder: (_, index) {
+          return ItemBlock(
+            model: events[index],
+            onTap: (model) {},
+          );
         },
       ),
     );

@@ -21,64 +21,69 @@ class ItemBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 10, left: 10, right: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, left: 20, right: 10, bottom: 10),
       child: GestureDetector(
-        onTap: () {},
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                model.bannerUrl,
-                height: height,
-                width: width,
-                fit: BoxFit.cover,
-              ),
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Container(
-              width: width,
-              child: Text(
-                model.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                softWrap: true,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black.withOpacity(0.6),
+        onTap: () {
+          onTap(model);
+        },
+        child: SingleChildScrollView(
+          physics: const NeverScrollableScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  model.bannerUrl,
+                  height: height,
+                  width: width,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            isMovie
-                ? Row(
-                    children: [
-                      const Icon(
-                        Icons.favorite_outlined,
-                        color: AppTheme.mainColor,
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        model.like.toString(),
-                        style: const TextStyle(
-                          fontSize: 10,
-                        ),
-                      ),
-                    ],
-                  )
-                : Text(
-                    model.description,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 10,
-                    ),
+              const SizedBox(
+                height: 8,
+              ),
+              Container(
+                width: width,
+                child: Text(
+                  model.title,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: true,
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Colors.black.withOpacity(0.6),
                   ),
-          ],
+                ),
+              ),
+              isMovie
+                  ? Row(
+                      children: [
+                        const Icon(
+                          Icons.favorite_outlined,
+                          color: AppTheme.mainColor,
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          model.like.toString(),
+                          style: const TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    )
+                  : Text(
+                      model.description,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 10,
+                      ),
+                    ),
+            ],
+          ),
         ),
       ),
     );
