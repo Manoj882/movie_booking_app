@@ -12,6 +12,15 @@ class AppTheme {
   static const redTextColor = Color(0xFFD05045);
   static const greenTextColor = Color(0xFF8CC153);
 
+  static List<Color> redGiftGradientColors = [
+    const Color(0xFFFCCAC6).withOpacity(0.3),
+    const Color(0xFFDB5449).withOpacity(0.3),
+  ];
+  static List<Color> greenGiftGradientColors = [
+    const Color(0xFF89D980).withOpacity(0.3),
+    const Color(0xFF34BA25).withOpacity(0.3),
+  ];
+
   static final lightTheme = ThemeData(
     primaryColor: mainColor,
     scaffoldBackgroundColor: Colors.white,

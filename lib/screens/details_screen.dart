@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
+import 'package:movie_booking_app/widgets/cast_crew_block.dart';
+import 'package:movie_booking_app/widgets/offer_block.dart';
+import 'package:movie_booking_app/widgets/review_block.dart';
 
 class DetailsScreen extends StatelessWidget {
   DetailsScreen({Key? key}) : super(key: key);
@@ -194,6 +197,12 @@ class DetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   block1(model),
+                  const SizedBox(height: 20,),
+                  const Offersblock(),
+                  const SizedBox(height: 20,),
+                  const ReviewBlock(),
+                  const SizedBox(height: 20,),
+                  const CastCrewblock(),
                 ],
               ),
             ),

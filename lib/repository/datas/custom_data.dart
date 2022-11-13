@@ -1,5 +1,8 @@
 import 'package:movie_booking_app/repository/models/ad_slider_model.dart';
+import 'package:movie_booking_app/repository/models/crew_cast_model.dart';
 import 'package:movie_booking_app/repository/models/menu_model.dart';
+import 'package:movie_booking_app/repository/models/offer_model.dart';
+import 'package:movie_booking_app/utils/app_theme.dart';
 
 import '../../constants/constant.dart';
 import '../models/event_model.dart';
@@ -119,3 +122,53 @@ List<EventModel> plays = [
     date: "date",
   ),
 ];
+
+List<OfferModel> offers = [
+  OfferModel(
+    title: "Wait ! Grab FREE reward",
+    description: "Book your seats and tap on the reward box to claim it.",
+    expiry: DateTime(2022, 4, 15, 12),
+    startTime: DateTime(2022, 3, 15, 12),
+    discount: 100,
+    color: AppTheme.redTextColor,
+    gradientColor: AppTheme.redGiftGradientColors,
+  ),
+  OfferModel(
+    title: "Wait ! Grab FREE reward",
+    description: "Book your seats and tap on the reward box to claim it.",
+    expiry: DateTime(2022, 4, 15, 12),
+    startTime: DateTime(2022, 3, 15, 12),
+    discount: 100,
+    color: AppTheme.greenTextColor,
+    gradientColor: AppTheme.greenGiftGradientColors,
+    icon: "gift_green.svg",
+  ),
+];
+
+List<CrewCastModel> crewCast = [
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Pradeep Khadka",
+    image: "assets/images/actors/pradeep khadka.jpg",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Laxmi Berdewa",
+    image: "assets/images/actors/Laxmi Bardewa.jpg",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Shiva Shrestha",
+    image: "assets/images/actors/Shiva Shrestha.jpg",
+  ),
+  CrewCastModel(
+    movieId: "123",
+    castId: "123",
+    name: "Sunil Thapa",
+    image: "assets/images/actors/Sunil Thapa.jpg",
+  ),
+];
+
