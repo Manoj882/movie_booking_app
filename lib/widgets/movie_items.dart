@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:movie_booking_app/repository/datas/custom_data.dart';
 import 'package:movie_booking_app/repository/models/movie_model.dart';
+import 'package:movie_booking_app/screens/details_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 
 import 'item_block.dart';
@@ -18,10 +20,15 @@ class MovieItems extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: movies.length,
         itemBuilder: (_, index) {
-          return ItemBlock(
-            model: movies[index],
-            isMovie: true,
-            onTap: (model) {},
+          return Hero(
+            tag: '${movies[index].title}$index',
+            child: ItemBlock(
+              model: movies[index],
+              isMovie: true,
+              onTap: (model) {
+                Get.to(() => DetailsScreen(), arguments: [movies[index], index]);
+              },
+            ),
           );
         },
       ),
