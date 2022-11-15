@@ -36,9 +36,11 @@ class CastCrewblock extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
+              scrollDirection: Axis.horizontal,
               itemCount: crewCast.length,
               itemBuilder: (_, index) {
                 return Container(
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     children: [
                       ClipRRect(

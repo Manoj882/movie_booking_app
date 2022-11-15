@@ -2,6 +2,7 @@ import 'package:movie_booking_app/repository/models/ad_slider_model.dart';
 import 'package:movie_booking_app/repository/models/crew_cast_model.dart';
 import 'package:movie_booking_app/repository/models/menu_model.dart';
 import 'package:movie_booking_app/repository/models/offer_model.dart';
+import 'package:movie_booking_app/repository/models/theatre_model.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 
 import '../../constants/constant.dart';
@@ -170,5 +171,24 @@ List<CrewCastModel> crewCast = [
     name: "Sunil Thapa",
     image: "assets/images/actors/Sunil Thapa.jpg",
   ),
+];
+
+List<TheatreModel> theatres = [
+  TheatreModel(id: "1", name: "Arasan Cinemas A/C 2K Dolby"),
+  TheatreModel(id: "2", name: "INOX - Prozone mall"),
+  TheatreModel(id: "3", name: "Karpagam theatres - 4K Dolby Atoms"),
+  TheatreModel(id: "4", name: "KG theatres - 4K"),
+];
+
+List<String> facilityAsset = [
+  "assets/icons/cancel.svg",
+  "assets/icons/parking.svg",
+  "assets/icons/cutlery.svg",
+  "assets/icons/rocking_horse.svg",
+];
+
+List<String> screens = [
+  "3D",
+  "2D",
 ];
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:movie_booking_app/screens/list_cinema_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 import 'package:movie_booking_app/widgets/cast_crew_block.dart';
 import 'package:movie_booking_app/widgets/offer_block.dart';
@@ -61,6 +62,22 @@ class DetailsScreen extends StatelessWidget {
         ),
         child: const Text(
           '3D',
+          style: TextStyle(
+            color: AppTheme.mainColor,
+          ),
+        ),
+      ),
+      const SizedBox(width: 10),
+      Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(2),
+          color: AppTheme.mainColor.withOpacity(0.1),
+        ),
+        child: const Text(
+          '2D',
           style: TextStyle(
             color: AppTheme.mainColor,
           ),
@@ -161,6 +178,45 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: ElevatedButton(
+          onPressed: () {
+            Get.to(
+              () => ListCinemaScreen(model: model),
+            );
+          },
+          child: Container(
+            height: 50,
+            width: double.maxFinite,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/icons/armchair.svg',
+                  height: 20,
+                  color: Colors.white,
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                const Text(
+                  'Book Seats',
+                  style: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppTheme.mainColor,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+            ),
+          ),
+        ),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -180,7 +236,7 @@ class DetailsScreen extends StatelessWidget {
               background: Hero(
                 tag: '${model.title}$index',
                 child: Container(
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(model.bannerUrl),
                       fit: BoxFit.cover,
@@ -197,11 +253,17 @@ class DetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   block1(model),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const Offersblock(),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const ReviewBlock(),
-                  const SizedBox(height: 20,),
+                  const SizedBox(
+                    height: 20,
+                  ),
                   const CastCrewblock(),
                 ],
               ),
@@ -211,6 +273,4 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-  
 }
