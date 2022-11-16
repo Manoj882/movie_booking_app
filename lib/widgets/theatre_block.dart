@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_booking_app/controllers/location_controller.dart';
 import 'package:movie_booking_app/repository/models/theatre_model.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
+import 'package:movie_booking_app/widgets/facilities_bottom_sheet.dart';
 
 class TheatreBlock extends StatelessWidget {
   const TheatreBlock({required this.model, Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class TheatreBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.all(20),
       color: Colors.white,
@@ -22,17 +24,30 @@ class TheatreBlock extends StatelessWidget {
               Text(
                 model.name,
               ),
-              Icon(
-                Icons.info_outlined,
-                color: Colors.black45.withOpacity(0.3),
-                size: 25,
+              GestureDetector(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    constraints: BoxConstraints(
+                      maxHeight: size.height * 0.63,
+                    ),
+                    builder: (_) => FacilitiesBottomSheet(model: model,),
+                  );
+                },
+                child: Icon(
+                  Icons.info_outlined,
+                  color: Colors.black45.withOpacity(0.3),
+                  size: 25,
+                ),
               ),
             ],
           ),
           RichText(
             text: TextSpan(
               children: [
-                WidgetSpan(
+                const WidgetSpan(
                   child: Icon(
                     Icons.location_on_outlined,
                     size: 18,
@@ -65,7 +80,7 @@ class TheatreBlock extends StatelessWidget {
                 Color color =
                     index % 2 == 0 ? AppTheme.orangeColor : AppTheme.greenColor;
                 return GestureDetector(
-                  onTap: (){},
+                  onTap: () {},
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     decoration: BoxDecoration(

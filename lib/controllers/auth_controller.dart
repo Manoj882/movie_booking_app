@@ -85,6 +85,18 @@ class AuthController extends GetxController {
     );
   }
 
+  getErrorSnackBarNew(String message) {
+    Get.snackbar(
+      "Error",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: AppTheme.redTextColor,
+      colorText: Colors.white,
+      borderRadius: 10,
+      margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+    );
+  }
+
   void googleLogIn() async{
     
     try{

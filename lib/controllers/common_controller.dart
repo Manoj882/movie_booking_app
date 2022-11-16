@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movie_booking_app/repository/datas/custom_data.dart';
 
 class CommonController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -21,7 +22,7 @@ class CommonController extends GetxController
     print(tabController.index);
     tabController.animateTo(0);
     tabs = tabList.map((e) => Tab(text: e)).toList();
-    // screen = screen[0].obs;
+    screen = screens[0].obs;
 
     super.onInit();
   }

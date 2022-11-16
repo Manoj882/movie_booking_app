@@ -181,10 +181,10 @@ List<TheatreModel> theatres = [
 ];
 
 List<String> facilityAsset = [
-  "assets/icons/cancel.svg",
-  "assets/icons/parking.svg",
-  "assets/icons/cutlery.svg",
-  "assets/icons/rocking_horse.svg",
+  "assets/images/facilities/cancel.svg",
+  "assets/images/facilities/parking.svg",
+  "assets/images/facilities/cutlery.svg",
+  "assets/images/facilities/rocking_horse.svg",
 ];
 
 List<String> screens = [
