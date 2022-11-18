@@ -5,8 +5,10 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:movie_booking_app/controllers/calendar_controller.dart';
 import 'package:movie_booking_app/controllers/common_controller.dart';
+import 'package:movie_booking_app/controllers/seat_selection_controller.dart';
 import 'package:movie_booking_app/repository/datas/custom_data.dart';
 import 'package:movie_booking_app/repository/models/movie_model.dart';
+import 'package:movie_booking_app/screens/seat_selection_screen.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 import 'package:movie_booking_app/utils/custom_calendar.dart';
 import 'package:movie_booking_app/widgets/screen_selection_block.dart';
@@ -36,6 +38,7 @@ class _ListCinemaScreenState extends State<ListCinemaScreen> {
   @override
   void initState() {
     calendarController = Get.put(CalendarController());
+    Get.put(SeatSelectionController());
 
     initializeDateFormatting('en');
     super.initState();
@@ -174,6 +177,10 @@ class _ListCinemaScreenState extends State<ListCinemaScreen> {
                   bottom: index != theatres.length - 1 ? 20 : 0),
               child: TheatreBlock(
                 model: theatres[index],
+                onTimeTap: (index) {
+                  Get.to(() => SeatSelectionScreen(
+                      theatreModel: theatres[index], movieModel: widget.model));
+                },
               ),
             );
           },
@@ -230,9 +237,18 @@ class TheatreSearchDelegate extends SearchDelegate<String> {
       itemCount: suggestionList.length,
       itemBuilder: (_, index) {
         return Container(
-          padding: EdgeInsets.only(bottom: index != suggestionList.length - 1 ? 20 : 0),
+          padding: EdgeInsets.only(
+              bottom: index != suggestionList.length - 1 ? 20 : 0),
           child: TheatreBlock(
             model: suggestionList[index],
+            onTimeTap: (index) {
+              Get.to(
+                () => SeatSelectionScreen(
+                  theatreModel: suggestionList[index],
+                  movieModel: model,
+                ),
+              );
+            },
           ),
         );
       },

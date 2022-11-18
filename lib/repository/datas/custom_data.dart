@@ -2,6 +2,7 @@ import 'package:movie_booking_app/repository/models/ad_slider_model.dart';
 import 'package:movie_booking_app/repository/models/crew_cast_model.dart';
 import 'package:movie_booking_app/repository/models/menu_model.dart';
 import 'package:movie_booking_app/repository/models/offer_model.dart';
+import 'package:movie_booking_app/repository/models/seat_layout_model.dart';
 import 'package:movie_booking_app/repository/models/theatre_model.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 
@@ -191,4 +192,21 @@ List<String> screens = [
   "3D",
   "2D",
 ];
+
+final seatLayout = SeatLayoutModel(
+    rows: 10,
+    columns: 11,
+    seatTypes: [
+      {"title": "King", "price": 120.0, "status": "Filling Fast"},
+      {"title": "Queen", "price": 100.0, "status": "Available"},
+      {"title": "Jack", "price": 80.0, "status": "Available"},
+    ],
+    theatreId: 123,
+    gap: 2,
+    gapColumnIndex: 5,
+    isLastFilled: true,
+    rowBreaks: [5, 3, 2],
+  );
+
+  final List<int> seat = [1,2,3,4,5,6,7,8,9,10];
 
