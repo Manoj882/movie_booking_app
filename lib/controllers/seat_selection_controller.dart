@@ -12,6 +12,8 @@ class SeatSelectionController extends GetxController{
 
   RxInt seatType = initialValue.obs;
 
+  RxBool isSeatSelection = false.obs;
+
   updateNoOfSeats(int value){
     noOfSeats = value.obs;
     update();

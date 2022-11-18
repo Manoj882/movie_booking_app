@@ -7,6 +7,7 @@ import 'package:movie_booking_app/repository/models/movie_model.dart';
 import 'package:movie_booking_app/repository/models/theatre_model.dart';
 import 'package:movie_booking_app/utils/app_theme.dart';
 import 'package:movie_booking_app/widgets/no_of_seats.dart';
+import 'package:movie_booking_app/widgets/seat_layout.dart';
 import 'package:movie_booking_app/widgets/seat_type.dart';
 import 'package:movie_booking_app/widgets/theatre_block.dart';
 
@@ -63,9 +64,36 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
     );
   }
 
+  Widget bottomBar({required Function(bool) toggle}) => BottomAppBar(
+        child: SizedBox(
+          height: AppBar().preferredSize.height,
+          child: ElevatedButton(
+            onPressed: (){
+              toggle(!SeatSelectionController.instance.isSeatSelection.value);
+              print('Seat selection: ${!SeatSelectionController.instance.isSeatSelection.value}');
+
+            },
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+              backgroundColor: AppTheme.mainColor ,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero,
+              ),
+            ),
+            child: const Text(
+              'Select Seats',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: bottomBar(toggle: SeatSelectionController.instance.isSeatSelection),
       appBar: AppBar(
         title: Text(
           widget.movieModel.title,
@@ -81,7 +109,13 @@ class _SeatSelectionScreenState extends State<SeatSelectionScreen> {
           const SizedBox(
             height: 10,
           ),
-          noOfSeatSelection(),
+          Obx(
+            () => SeatSelectionController.instance.isSeatSelection.value 
+            ? SeatLayout(model: seatLayout)
+            : noOfSeatSelection(),
+          ),
+          // SeatLayout(model: seatLayout),
+
         ],
       ),
     );
